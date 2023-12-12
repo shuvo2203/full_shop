@@ -4,11 +4,13 @@ const dotenv = require('dotenv');
 dotenv.config();
 require('./database/database');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 const user = require('./router/userRoute');
 

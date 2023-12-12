@@ -1,10 +1,12 @@
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 
 exports.authLogin = async (req, res, next) => {
     try {
-        const decode = jwt.verify(req.headers.authorization, process.env.SECRET_KEY);
+        const token = req.cookies.token;
+        const decode = jwt.verify(token, process.env.SECRET_KEY);
         req.user = decode;
         next();
     } catch (error) {
